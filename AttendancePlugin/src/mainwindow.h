@@ -8,7 +8,7 @@
  *             This source is for internal use only — Restricted Distribution.
  *             All rights reserved.
  *
- *  Plugin main window.
+ *  Attendance plugin main window.
  *
  ******************************************************************************/
 
@@ -17,6 +17,11 @@
 
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QStandardItemModel>
+
+#include "attendance_model.h"
+#include "date_picker.h"
 
 
 namespace Ui {
@@ -39,7 +44,27 @@ public:
     /// Class destructor.
     ~MainWindow();
 
-private:
+private slots:
+    void openFile();
+
+    void on_pushButton_clicked();
+
+    void on_selectDatesButton_clicked();
+
+    void on_openFileButton_clicked();
+
+protected:
+    void getDates(QDate start, QDate end, bool* daysOfWeek);
+
+protected:
+    QPushButton* _openFileButton;
+    AttendanceModel* _attendanceModel;
+
+    DatePicker* _datePicker;
+
+    QList<QDate> _dates;
+
+protected:
     /// Main window UI.
     Ui::MainWindow* ui;
 };

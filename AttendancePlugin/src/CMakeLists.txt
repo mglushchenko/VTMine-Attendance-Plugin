@@ -19,6 +19,13 @@ add_library(AttendancePlugin SHARED
   mainwindow.cpp
   mainwindow.h
   mainwindow.ui
+  person.h
+  person.cpp
+  attendance_model.h
+  attendance_model.cpp
+  date_picker.cpp
+  date_picker.h
+  date_picker.ui
 )
 
 #target_link_libraries(TestPlugin PRIVATE Qt5::Core)

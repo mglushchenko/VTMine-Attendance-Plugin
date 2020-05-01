@@ -6,41 +6,54 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>448</width>
-    <height>289</height>
+    <width>848</width>
+    <height>558</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableView" name="tableView">
+   <widget class="QTableView" name="attendanceTable">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>31</y>
-      <width>361</width>
-      <height>241</height>
+      <width>741</width>
+      <height>511</height>
      </rect>
     </property>
+    <property name="gridStyle">
+     <enum>Qt::SolidLine</enum>
+    </property>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>2</y>
-      <width>391</width>
+      <width>771</width>
       <height>31</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
-      <number>40</number>
+      <number>100</number>
      </property>
      <item>
       <widget class="QPushButton" name="openFileButton">
        <property name="text">
         <string>Open file</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="selectDatesButton">
+       <property name="text">
+        <string>Select dates</string>
        </property>
       </widget>
      </item>
@@ -52,7 +65,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QDateEdit" name="dateEdit"/>
+      <widget class="QDateEdit" name="dateEdit">
+       <property name="calendarPopup">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
@@ -62,7 +79,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>448</width>
+     <width>848</width>
      <height>17</height>
     </rect>
    </property>

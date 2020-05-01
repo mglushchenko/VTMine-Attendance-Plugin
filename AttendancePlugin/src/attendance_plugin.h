@@ -58,7 +58,7 @@ public:
     bool deactivate() override;
 
 protected:
-    /// Framewrk that launched the plugin.
+    /// Framework that launched the plugin.
     IFramework* _owner;
 };
 
