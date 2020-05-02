@@ -25,6 +25,9 @@
 
 namespace vtmine {
 
+/***************************************************************************//**
+ *  Class representing an attendee model.
+ ******************************************************************************/
 class Person: public QStandardItem {
 public:
     /// Class constructor.
@@ -36,18 +39,16 @@ public:
     /// ID getter.
     int getID() const { return _id; }
 
-    /// Attendance map getter.
-    QMap<QDate*, bool> getAttendanceMap() const { return _attendanceMap; }
+    /// Attendance record (pairs of date and true/false for attendance).
+    std::vector<std::pair<QDate*, bool>> _attendanceRecord;
 
 protected:
-    /// Person's name.
-    QString _name;
-
     /// Person's ID.
     int _id;
 
-    /// Attendance map (date as key).
-    QMap<QDate*, bool> _attendanceMap;
+    /// Person's name.
+    QString _name;
+
 };
 
 } // namespace vtmine

@@ -17,9 +17,9 @@
 
 namespace vtmine {
 
-DatePicker::DatePicker(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::DatePicker)
+DatePicker::DatePicker(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::DatePicker)
 {
     ui->setupUi(this);
 

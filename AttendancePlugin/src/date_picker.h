@@ -19,6 +19,7 @@
 
 #include <QWidget>
 #include <QDate>
+#include <QDialog>
 
 
 namespace Ui {
@@ -27,7 +28,10 @@ class DatePicker;
 
 namespace vtmine {
 
-class DatePicker : public QWidget
+/***************************************************************************//**
+ *  Class representing date picker dialog..
+ ******************************************************************************/
+class DatePicker : public QDialog
 {
     Q_OBJECT
 
@@ -61,8 +65,14 @@ protected:
     /// Widget UI.
     Ui::DatePicker *ui;
 private slots:
+
+    /// "OK" button click handler.
     void on_okBtn_clicked();
+
+    /// Handler for start date selector.
     void on_startDatePicker_userDateChanged(const QDate &date);
+
+    /// Handler for end date selector.
     void on_endDatePicker_userDateChanged(const QDate &date);
 };
 

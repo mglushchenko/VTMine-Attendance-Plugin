@@ -28,11 +28,12 @@ MainWindow::MainWindow(QWidget* parent)
 {
     ui->setupUi(this);
     ui->attendanceTable->horizontalHeader()->setStretchLastSection(true);
-    QHeaderView* view = new QHeaderView(Qt::Horizontal);
 }
 
 MainWindow::~MainWindow()
-{
+{ 
+    for (QDate* date: _dates)
+        delete date;
     delete _attendanceModel;
     delete ui;
 }
@@ -64,20 +65,21 @@ void MainWindow::openFile()
     file.close();
 
     _attendanceModel = new AttendanceModel(personList);
-//    _attendanceModel->setHeaderData(0, Qt::Horizontal, QObject::tr("ID"));
-//    _attendanceModel->setHeaderData(1, Qt::Horizontal, QObject::tr("Name"));
     ui->attendanceTable->setModel(_attendanceModel);
 }
 
 void MainWindow::on_selectDatesButton_clicked()
 {
-    _datePicker = new DatePicker();
-    _datePicker->setAttribute(Qt::WA_DeleteOnClose);
-    _datePicker->show();
+    _datePicker = new DatePicker(this);
+    _datePicker->exec();
     QDate startDate = _datePicker->getStartDate();
     QDate endDate = _datePicker->getEndDate();
     bool* days = _datePicker->getDays();
+
+    delete _datePicker;
+
     getDates(startDate, endDate, days);
+    _attendanceModel->addDates(_dates);
 }
 
 void MainWindow::on_openFileButton_clicked()
@@ -90,12 +92,9 @@ void MainWindow::getDates(QDate start, QDate end, bool* daysOfWeek)
     QDate tmp = start;
     do {
         if (daysOfWeek[tmp.dayOfWeek() - 1])
-            _dates.append(tmp);
+            _dates.append(new QDate(tmp));
         tmp = tmp.addDays(1);
-    } while (tmp != end);
-
-    if (daysOfWeek[tmp.dayOfWeek() - 1])
-        _dates.append(tmp);
+    } while (tmp <= end);
 }
 
 } // namespace vtmine

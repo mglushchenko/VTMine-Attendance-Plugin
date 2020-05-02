@@ -45,24 +45,31 @@ public:
     ~MainWindow();
 
 private slots:
-    void openFile();
 
-    void on_pushButton_clicked();
-
+    /// "Select dates" button click handler.
     void on_selectDatesButton_clicked();
 
+    /// "Open file" button click handler.
     void on_openFileButton_clicked();
 
 protected:
+    /// Opens file with students' list.
+    void openFile();
+
+    /// Determines dates from dialog result.
     void getDates(QDate start, QDate end, bool* daysOfWeek);
 
+    void setDates(QList<Person*>& personList);
+
 protected:
-    QPushButton* _openFileButton;
+    /// Model for displaying attendance table.
     AttendanceModel* _attendanceModel;
 
+    /// Dialog for date picking.
     DatePicker* _datePicker;
 
-    QList<QDate> _dates;
+    /// Dates to mark.
+    QList<QDate*> _dates;
 
 protected:
     /// Main window UI.
