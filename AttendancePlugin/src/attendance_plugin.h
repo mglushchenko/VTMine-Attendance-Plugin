@@ -47,14 +47,15 @@ public:
         deactivate();
     }
 
-    /**
-     * \brief Activates plugin main window.
-     * \param frmw -- Framework that launched the plugin.
-     * @return
+    /** \brief Activates plugin main window.
+     *  \param frmw -- Framework that launched the plugin.
+     *  \return True in case of success.
      */
-    bool activate(const vtmine::IFramework* frmw) const override;
+    bool activate(vtmine::IFramework* frmw) override;
 
-    /// Deactivates plugin.
+    /** \brief Deactivates plugin.
+     *  \return True in case of success.
+     */
     bool deactivate() override;
 
 protected:

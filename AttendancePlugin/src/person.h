@@ -33,6 +33,12 @@ public:
     /// Class constructor.
     Person(QString& name, int id);
 
+    /** \brief Constructor for CSV deserialization.
+     *  \param csv -- CSV string.
+     *  \param dates -- List of dates.
+     */
+    Person(QString& csv, QList<QDate*>& dates);
+
     /// Name getter.
     QString getName() const { return _name; }
 
@@ -41,6 +47,11 @@ public:
 
     /// Attendance record (pairs of date and true/false for attendance).
     std::vector<std::pair<QDate*, bool>> _attendanceRecord;
+
+    /** \brief Represents class data as CSV-format string.
+     *  \return CSV-format string.
+     */
+    QString toCsv() const;
 
 protected:
     /// Person's ID.

@@ -6,22 +6,37 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>848</width>
-    <height>558</height>
+    <width>922</width>
+    <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Attendance control plugin</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <widget class="QTableView" name="attendanceTable">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>31</y>
-      <width>741</width>
-      <height>511</height>
+      <y>1</y>
+      <width>911</width>
+      <height>681</height>
      </rect>
+    </property>
+    <property name="locale">
+     <locale language="English" country="UnitedStates"/>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
     </property>
     <property name="gridStyle">
      <enum>Qt::SolidLine</enum>
@@ -30,61 +45,132 @@
      <bool>false</bool>
     </attribute>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>2</y>
-      <width>771</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
-      <number>100</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="openFileButton">
-       <property name="text">
-        <string>Open file</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="selectDatesButton">
-       <property name="text">
-        <string>Select dates</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="saveFileButton">
-       <property name="text">
-        <string>Save file</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDateEdit" name="dateEdit">
-       <property name="calendarPopup">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>848</width>
+     <width>922</width>
      <height>17</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="action_Open"/>
+    <addaction name="action_Save"/>
+   </widget>
+   <widget class="QMenu" name="menu_Date">
+    <property name="title">
+     <string>&amp;Date</string>
+    </property>
+    <addaction name="action_Select"/>
+    <addaction name="action_Add"/>
+    <addaction name="action_Clear"/>
+   </widget>
+   <widget class="QMenu" name="menu_Check">
+    <property name="title">
+     <string>&amp;Check</string>
+    </property>
+    <addaction name="action_Check_selected_row"/>
+    <addaction name="action_Uncheck_selected_row"/>
+    <addaction name="action_Check_selected_column"/>
+    <addaction name="action_Uncheck_selected_column"/>
+    <addaction name="action_Check_all"/>
+    <addaction name="action_Uncheck_all"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Date"/>
+   <addaction name="menu_Check"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_Open">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+  </action>
+  <action name="action_Save">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+  </action>
+  <action name="action_Select">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Select</string>
+   </property>
+  </action>
+  <action name="action_Add">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Add</string>
+   </property>
+  </action>
+  <action name="action_Clear">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Clear</string>
+   </property>
+  </action>
+  <action name="action_Check_selected_row">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Check selected row</string>
+   </property>
+  </action>
+  <action name="action_Uncheck_selected_row">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Uncheck selected row</string>
+   </property>
+  </action>
+  <action name="action_Check_selected_column">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Check selected column</string>
+   </property>
+  </action>
+  <action name="action_Uncheck_selected_column">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Uncheck selected column</string>
+   </property>
+  </action>
+  <action name="action_Check_all">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Check all</string>
+   </property>
+  </action>
+  <action name="action_Uncheck_all">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Uncheck all</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

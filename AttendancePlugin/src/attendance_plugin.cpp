@@ -20,8 +20,9 @@ AttendancePlugin::AttendancePlugin()
 
 }
 
-bool AttendancePlugin::activate(const vtmine::IFramework* frmw) const
+bool AttendancePlugin::activate(vtmine::IFramework* frmw)
 {
+    _owner = frmw;
     char* argv[] = { NULL };
     int argc = 0;
 
@@ -34,7 +35,7 @@ bool AttendancePlugin::activate(const vtmine::IFramework* frmw) const
 
 bool AttendancePlugin::deactivate()
 {
-    delete _owner;
+   // delete _owner;
     return true;
 }
 

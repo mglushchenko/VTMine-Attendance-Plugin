@@ -9,6 +9,8 @@
  ******************************************************************************/
 
 
+#include <QLocale>
+
 #include "attendance_model.h"
 
 
@@ -17,7 +19,13 @@ namespace vtmine {
 AttendanceModel::AttendanceModel(QList<Person*> personList, QObject* parent)
                 : _personList(personList)
 {
-    _columnCount = 2;
+    _columnCount = 2 + _personList.at(0)->_attendanceRecord.size();
+}
+
+AttendanceModel::~AttendanceModel()
+{
+    for (Person* p: _personList)
+        delete p;
 }
 
 int AttendanceModel::rowCount(const QModelIndex& parent) const
@@ -74,7 +82,11 @@ QVariant AttendanceModel::headerData(int section, Qt::Orientation orientation, i
         case 1:
             return tr("Name");
         default:
-            return _personList.at(0)->_attendanceRecord[section - 2].first->toString();
+        {
+            QLocale locale = QLocale(QLocale::English, QLocale::UnitedStates);
+            QDate* date = _personList.at(0)->_attendanceRecord[section - 2].first;
+            return locale.toString(*date);
+        }
         }
     }
 
@@ -89,17 +101,16 @@ bool AttendanceModel::setData(const QModelIndex& index, const QVariant& value, i
     if (role == Qt::CheckStateRole)
     {
         Person* p = _personList.at(index.row());
-        //QDate* toChange = p->_attendanceMap.keys().at(index.column() - 2);
         if ((Qt::CheckState)value.toInt() == Qt::Checked)
         {
             p->_attendanceRecord[index.column() - 2].second = true;
-            //p->_attendanceMap[toChange] = true;
         }
         else
         {
              p->_attendanceRecord[index.column() - 2].second = false;
-             //p->_attendanceMap[toChange] = false;
         }
+
+        emit dataChanged(index, index);
         return true;
     }
     return false;
@@ -128,6 +139,45 @@ void AttendanceModel::addDates(QList<QDate*> dates)
         endInsertColumns();
         ++_columnCount;
     }
+}
+
+void AttendanceModel::clearDates()
+{
+    beginRemoveColumns(QModelIndex(), 2, columnCount() - 1);
+    for (Person* p: _personList)
+    {
+        p->_attendanceRecord.clear();
+    }
+    endRemoveColumns();
+    _columnCount = 2;
+}
+
+void AttendanceModel::setMarksForPerson(int num, bool checked)
+{
+    if (num >= _personList.size())
+        return;
+    Person* p = _personList.at(num);
+    for (auto& pair: p->_attendanceRecord)
+        pair.second = checked;
+
+    QModelIndex start = index(num, 2);
+    QModelIndex end = index(num, columnCount());
+
+    emit dataChanged(start, end);
+}
+
+void AttendanceModel::setMarksForDate(int num, bool checked)
+{
+    if (num >= columnCount())
+        return;
+
+    for (Person* p: _personList)
+        p->_attendanceRecord[num - 2].second = checked;
+
+    QModelIndex start = index(0, num);
+    QModelIndex end = index(rowCount(), num);
+
+    emit dataChanged(start, end);
 }
 
 } // namespace vtmine

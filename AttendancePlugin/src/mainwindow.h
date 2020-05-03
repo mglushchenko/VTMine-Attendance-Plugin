@@ -46,30 +46,109 @@ public:
 
 private slots:
 
-    /// "Select dates" button click handler.
-    void on_selectDatesButton_clicked();
+    /// "Open file" action handler.
+    void on_action_Open_triggered();
 
-    /// "Open file" button click handler.
-    void on_openFileButton_clicked();
+    /// "Save file" action handler.
+    void on_action_Save_triggered();
+
+    /// "Select dates" action handler.
+    void on_action_Select_triggered();
+
+    /// "Add dates" action handler.
+    void on_action_Add_triggered();
+
+    /// "Clear dates" action handler.
+    void on_action_Clear_triggered();
+
+    /// "Check selected row" action handler.
+    void on_action_Check_selected_row_triggered();
+
+    /// "Uncheck selected row" action handler.
+    void on_action_Uncheck_selected_row_triggered();
+
+    /// "Check selected column" action handler.
+    void on_action_Check_selected_column_triggered();
+
+    /// "Uncheck selected column" action handler.
+    void on_action_Uncheck_selected_column_triggered();
+
+    /// "Check all" action handler.
+    void on_action_Check_all_triggered();
+
+    /// "Uncheck all" action handler.
+    void on_action_Uncheck_all_triggered();
 
 protected:
-    /// Opens file with students' list.
+
+    /// Opens file with students' list or attendance table.
     void openFile();
+
+    /// Opens file with students' list (*.csv or *.txt).
+    QList<Person*> openStudentsList(QString fileName);
+
+    /// Opens file with attendance table (*.atnd).
+    QList<Person*> openTable(QString fileName);
+
+    /// Parses dates from CSV file header.
+    void getDatesFromCsv(QString line);
+
+    /// Saves file with attendance table.
+    void saveFile();
+
+    /** \brief Assembles a string of CSV headers.
+     *  \return String with CSV headers.
+     */
+    QString getCsvHeaders();
+
+    /// Opens dates selector.
+    void selectDatesToAdd();
+
+    /// Clears dates in table.
+    void clearDates();
+
+    /** \brief Sets all values in selected row to one value.
+     *  \param checked -- Value to be set.
+     */
+    void setRowMarks(bool checked);
+
+    /** \brief Sets all values in selected column to one value.
+     *  \param checked -- Value to be set.
+     */
+    void setColumnMarks(bool checked);
+
+    /** \brief Sets all values in table to one value.
+     *  \param checked -- Value to be set.
+     */
+    void setAllTable(bool checked);
 
     /// Determines dates from dialog result.
     void getDates(QDate start, QDate end, bool* daysOfWeek);
 
-    void setDates(QList<Person*>& personList);
+    /** \brief Displays a message box.
+     *  \param text -- Message text.
+     */
+    void showMessage(const char* text);
+
+    /// Enables menu actions for date editing.
+    void enableDateEdit();
+
+    /** \brief Enables or disables menu actions for table editing.
+     *  \param flag -- Enable/disable.
+     */
+    void setTableEditEnabled(bool flag);
 
 protected:
     /// Model for displaying attendance table.
-    AttendanceModel* _attendanceModel;
+    AttendanceModel* _attendanceModel = nullptr;
 
     /// Dialog for date picking.
     DatePicker* _datePicker;
 
     /// Dates to mark.
     QList<QDate*> _dates;
+
+    bool _modelHasDates = false;
 
 protected:
     /// Main window UI.
