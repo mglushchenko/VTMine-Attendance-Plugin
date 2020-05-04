@@ -35,6 +35,8 @@ DatePicker::DatePicker(QWidget *parent)
     QDate today = QDate::currentDate();
     ui->startDatePicker->setDate(today);
     ui->endDatePicker->setDate(today);
+
+    _datesConfirmed = false;
 }
 
 DatePicker::~DatePicker()
@@ -62,6 +64,8 @@ void DatePicker::on_okBtn_clicked()
         else
             _days[i] = false;
     }
+
+    _datesConfirmed = true;
     close();
 }
 

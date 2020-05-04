@@ -51,6 +51,8 @@ public:
     /// Getter for selected days.
     bool* getDays() const { return _days; }
 
+    bool getDatesConfirmed() { return _datesConfirmed; }
+
 protected:
     /// Selected start date.
     QDate _startDate;
@@ -64,6 +66,8 @@ protected:
 protected:
     /// Widget UI.
     Ui::DatePicker *ui;
+
+    bool _datesConfirmed;
 private slots:
 
     /// "OK" button click handler.

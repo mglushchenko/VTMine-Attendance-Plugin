@@ -50,6 +50,7 @@ QString Person::toCsv() const
             attended = "-";
         res += attended + delim;
     }
+    res.remove(res.size() - 1, 1);
     res += "\n";
     return res;
 }

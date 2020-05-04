@@ -9,6 +9,8 @@
  ******************************************************************************/
 
 
+#include <QGridLayout>
+
 #include "attendance_plugin.h"
 #include "mainwindow.h"
 
@@ -35,7 +37,6 @@ bool AttendancePlugin::activate(vtmine::IFramework* frmw)
 
 bool AttendancePlugin::deactivate()
 {
-   // delete _owner;
     return true;
 }
 

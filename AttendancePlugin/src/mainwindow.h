@@ -153,6 +153,8 @@ protected:
 protected:
     /// Main window UI.
     Ui::MainWindow* ui;
+
+    QWidget* _central;
 };
 
 } // namespace vtmine

@@ -9,6 +9,7 @@
  ******************************************************************************/
 
 
+#include <QGridLayout>
 #include <QFileDialog>
 #include <QErrorMessage>
 #include <QMessageBox>
@@ -30,7 +31,14 @@ MainWindow::MainWindow(QWidget* parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->attendanceTable->horizontalHeader()->setStretchLastSection(true);
+    QGridLayout* layout = new QGridLayout();
+    layout->addWidget(ui->attendanceTable);
+
+    _central = new QWidget();
+    _central->setLayout(layout);
+    setCentralWidget(_central);
+    ui->attendanceTable->resizeColumnsToContents();
+    ui->attendanceTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 MainWindow::~MainWindow()
@@ -38,6 +46,7 @@ MainWindow::~MainWindow()
     for (QDate* date: _dates)
         delete date;
     delete _attendanceModel;
+    delete _central;
     delete ui;
 }
 
@@ -158,6 +167,7 @@ QString MainWindow::getCsvHeaders()
     {
         res += date->toString("yyyy-dd-MM") + delim;
     }
+    res.remove(res.size() - 1, 1);
     res += "\n";
     return res;
 }
@@ -166,16 +176,19 @@ void MainWindow::selectDatesToAdd()
 {
     _datePicker = new DatePicker(this);
     _datePicker->exec();
-    QDate startDate = _datePicker->getStartDate();
-    QDate endDate = _datePicker->getEndDate();
-    bool* days = _datePicker->getDays();
+
+    if (_datePicker->getDatesConfirmed())
+    {
+        QDate startDate = _datePicker->getStartDate();
+        QDate endDate = _datePicker->getEndDate();
+        bool* days = _datePicker->getDays();
+        getDates(startDate, endDate, days);
+        _attendanceModel->addDates(_dates);
+        setTableEditEnabled(true);
+    }
 
     delete _datePicker;
 
-    getDates(startDate, endDate, days);
-    _attendanceModel->addDates(_dates);
-
-    setTableEditEnabled(true);
 }
 
 void MainWindow::clearDates()
@@ -205,6 +218,8 @@ void MainWindow::setAllTable(bool checked)
 
 void MainWindow::getDates(QDate start, QDate end, bool* daysOfWeek)
 {
+    if (!_dates.empty())
+        _dates.clear();
     QDate tmp = start;
     do {
         if (daysOfWeek[tmp.dayOfWeek() - 1])
