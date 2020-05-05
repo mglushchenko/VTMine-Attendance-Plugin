@@ -79,6 +79,12 @@ private slots:
     /// "Uncheck all" action handler.
     void on_action_Uncheck_all_triggered();
 
+    /// "How to use" action handler.
+    void on_action_How_to_use_triggered();
+
+    /// "About" action handler.
+    void on_action_About_triggered();
+
 protected:
 
     /// Opens file with students' list or attendance table.
@@ -154,6 +160,7 @@ protected:
     /// Main window UI.
     Ui::MainWindow* ui;
 
+    /// Central widget of main window.
     QWidget* _central;
 };
 

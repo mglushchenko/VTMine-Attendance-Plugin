@@ -22,6 +22,7 @@
 #include "ui_mainwindow.h"
 #include "person.h"
 #include "date_picker.h"
+#include "helpwindow.h"
 
 
 namespace vtmine {
@@ -314,7 +315,19 @@ void MainWindow::on_action_Uncheck_all_triggered()
     setAllTable(false);
 }
 
+void MainWindow::on_action_How_to_use_triggered()
+{
+    HelpWindow* helpWindow = new HelpWindow(this);
+    QString path = "README.md";
+    helpWindow->openFile(path);
+    helpWindow->exec();
+
+    delete helpWindow;
+}
+
+void MainWindow::on_action_About_triggered()
+{
+    showMessage("Created by Maria Glushchenko, 2020");
+}
+
 } // namespace vtmine
-
-
-

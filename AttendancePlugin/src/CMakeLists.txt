@@ -26,6 +26,9 @@ add_library(AttendancePlugin SHARED
   date_picker.cpp
   date_picker.h
   date_picker.ui
+  helpwindow.cpp
+  helpwindow.h
+  helpwindow.ui
 )
 
 #target_link_libraries(TestPlugin PRIVATE Qt5::Core)

@@ -44,7 +44,6 @@ public:
     /// Class destructor.
     ~AttendancePlugin() override
     {
-        //deactivate();
     }
 
     /** \brief Activates plugin main window.

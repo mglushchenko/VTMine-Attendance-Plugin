@@ -51,6 +51,7 @@ public:
     /// Getter for selected days.
     bool* getDays() const { return _days; }
 
+    /// Getter for flag of selection confirmation.
     bool getDatesConfirmed() { return _datesConfirmed; }
 
 protected:
@@ -67,6 +68,7 @@ protected:
     /// Widget UI.
     Ui::DatePicker *ui;
 
+    /// Flag indicating if the dialog result was "OK".
     bool _datesConfirmed;
 private slots:
 

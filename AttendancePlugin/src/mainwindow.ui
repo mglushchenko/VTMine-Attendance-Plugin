@@ -77,9 +77,17 @@
     <addaction name="action_Check_all"/>
     <addaction name="action_Uncheck_all"/>
    </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_How_to_use"/>
+    <addaction name="action_About"/>
+   </widget>
    <addaction name="menu_File"/>
    <addaction name="menu_Date"/>
    <addaction name="menu_Check"/>
+   <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action_Open">
@@ -165,6 +173,16 @@
    </property>
    <property name="text">
     <string>&amp;Uncheck all</string>
+   </property>
+  </action>
+  <action name="action_How_to_use">
+   <property name="text">
+    <string>&amp;How to use</string>
+   </property>
+  </action>
+  <action name="action_About">
+   <property name="text">
+    <string>&amp;About</string>
    </property>
   </action>
  </widget>
