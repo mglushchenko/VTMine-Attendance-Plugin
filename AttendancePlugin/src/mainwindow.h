@@ -154,6 +154,7 @@ protected:
     /// Dates to mark.
     QList<QDate*> _dates;
 
+    /// Flag indicating if there are currently any dates in the table.
     bool _modelHasDates = false;
 
 protected:

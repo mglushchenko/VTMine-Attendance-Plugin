@@ -22,7 +22,7 @@ AttendancePlugin::AttendancePlugin()
 
 }
 
-bool AttendancePlugin::activate(vtmine::IFramework* frmw)
+bool AttendancePlugin::activate(IFramework* frmw)
 {
     _owner = frmw;
     char* argv[] = { NULL };

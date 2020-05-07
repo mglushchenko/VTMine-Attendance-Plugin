@@ -43,7 +43,7 @@ public:
     int columnCount(const QModelIndex& parent = QModelIndex()) const override;
 
     /// Getter for table contents.
-    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+    virtual QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
     /// Getter for table headers.
     virtual QVariant headerData(int section, Qt::Orientation orientation,

@@ -43,15 +43,15 @@ public:
     QString getName() const { return _name; }
 
     /// ID getter.
-    int getID() const { return _id; }
-
-    /// Attendance record (pairs of date and true/false for attendance).
-    std::vector<std::pair<QDate*, bool>> _attendanceRecord;
+    int getID() const { return _id; }    
 
     /** \brief Represents class data as CSV-format string.
      *  \return CSV-format string.
      */
     QString toCsv() const;
+
+    /// Attendance record (pairs of date and true/false for attendance).
+    std::vector<std::pair<QDate*, bool>> _attendanceRecord;
 
 protected:
     /// Person's ID.

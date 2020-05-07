@@ -50,7 +50,7 @@ public:
      *  \param frmw -- Framework that launched the plugin.
      *  \return True in case of success.
      */
-    bool activate(vtmine::IFramework* frmw) override;
+    bool activate(IFramework* frmw) override;
 
     /** \brief Deactivates plugin.
      *  \return True in case of success.

@@ -66,7 +66,7 @@ protected:
 
 protected:
     /// Widget UI.
-    Ui::DatePicker *ui;
+    Ui::DatePicker* ui;
 
     /// Flag indicating if the dialog result was "OK".
     bool _datesConfirmed;

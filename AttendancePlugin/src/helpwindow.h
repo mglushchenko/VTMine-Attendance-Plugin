@@ -45,9 +45,9 @@ public:
      */
     void openFile(QString& path);
 
-private:
+protected:
     /// Widget UI.
-    Ui::HelpWindow *ui;
+    Ui::HelpWindow* ui;
 };
 
 } // namespace vtmine
